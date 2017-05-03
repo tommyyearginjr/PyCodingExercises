@@ -5,30 +5,35 @@ mergeTwo(["a", "c", "z"], ["b", "f", "z"], 3) ---> ["a", "b", "c"]
 mergeTwo(["a", "c", "z"], ["c", "f", "z"], 3) ---> ["a", "c", "f"]
 mergeTwo(["f", "g", "z"], ["c", "f", "g"], 3) ---> ["c", "f", "g"]
 '''
+from collections import Counter
 
 def mergeTwo(PuffDaddy01, PuffDaddy02, N):
+    unique01counter = Counter(PuffDaddy01)
+    unique01 = []
+    for key in unique01counter:
+        unique01.append(key)
+    unique01 = sorted(unique01)
+    unique02counter = Counter(PuffDaddy02)
+    unique02 = []
+    for key in unique02counter:
+        unique02.append(key)
+    unique02 = sorted(unique02)
     ParisJackson = []
     BlanketJackson = []
-    PuffDaddy01 = sorted(PuffDaddy01)
-    PuffDaddy02 = sorted(PuffDaddy02)
-
     for i in range(0, N-1, 1):
-        ParisJackson.append(PuffDaddy01[i])
+        ParisJackson.append(unique01[i])
     for i in range(0, N-1, 1):
-        if PuffDaddy02[i] in ParisJackson:
+        if unique02[i] in ParisJackson:
             pass
         else:
-            ParisJackson.append(PuffDaddy02[i])
-
+            ParisJackson.append(unique02[i])
     ParisJackson = sorted(ParisJackson)
-
     for i in range(0, N, 1):
         BlanketJackson.append(ParisJackson[i])
-
-    print('{}, {}, {} {} {}'.format(PuffDaddy01, PuffDaddy02, N, ' --> ', BlanketJackson))
+    print('{}, {}, {} {} {}'.format(unique01, unique02, N, ' --> ', BlanketJackson))
 
 mergeTwo(["a", "c", "z"], ["b", "f", "z"], 3)
 mergeTwo(["a", "c", "z"], ["c", "f", "z"], 3)
 mergeTwo(["f", "g", "z"], ["c", "f", "g"], 3)
-
+print(72*'-')
 mergeTwo(['j','a','y','y','o','u','n','g','b','l','o','o','d'],['z','e','e','m','a','x'],5)
